@@ -17,7 +17,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("dowload/{nome}")]
+        [Route("download/{nome}")]
         public ActionResult Download([FromRoute]string nome)
         {
             var path = _hostEnvironment.ContentRootPath;
