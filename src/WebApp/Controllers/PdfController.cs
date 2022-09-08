@@ -17,8 +17,8 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("dowload")]
-        public async Task<IActionResult> Download()
+        [Route("dowload/{nome}")]
+        public async Task<IActionResult> Download([FromRoute]string nome)
         {
             var path = _hostEnvironment.ContentRootPath;
 
@@ -26,7 +26,7 @@ namespace WebApp.Controllers
             var document = new Document();
             document.LoadFromFile(@$"{path}/Templates/Eu.docx");
 
-            document.Replace("@nome", "Cleber Varçal", true, true);
+            document.Replace("@nome", nome, true, true);
 
             var stream = new MemoryStream();
             document.SaveToStream(stream, FileFormat.PDF);
